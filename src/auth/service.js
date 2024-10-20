@@ -29,7 +29,9 @@ const login = async ({ email, password, rememberMe }) => {
     throw new Error('Las credenciales son inválidas');
   }
 
-  const token = jwt.sign({ user }, SECRET_KEY, {
+  const { password: _, ...userWithoutPassword } = user.dataValues;
+
+  const token = jwt.sign({ user: userWithoutPassword }, SECRET_KEY, {
     expiresIn: rememberMe === 'true' ? '30d' : '1h',
   });
 
