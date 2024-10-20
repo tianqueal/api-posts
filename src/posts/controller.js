@@ -21,15 +21,27 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { post } = await postService.findOneById(+req.params.id);
+
     if (!post) {
       return res.status(404).json({ error: 'Post no encontrado' });
     }
+
     if (post.dataValues.userId !== req.user.id) {
       return res.status(403).json({ error: 'Acceso denegado' });
     }
+
+    const { title, content } = req.body;
+
+    if (!title || !content)
+      return res.status(400).json({
+        error:
+          'Este método espera un objeto con las propiedades (title) y (content)',
+      });
+
     res.status(200).json(
       await postService.update(+req.params.id, {
-        ...req.body,
+        title,
+        content,
         userId: req.user.id,
       })
     );
