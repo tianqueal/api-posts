@@ -35,7 +35,7 @@ const login = async ({ email, password, rememberMe }) => {
     expiresIn: rememberMe === 'true' ? '30d' : '1h',
   });
 
-  return { token };
+  return { token, user: userWithoutPassword };
 };
 
 export const authService = {

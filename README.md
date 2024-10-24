@@ -73,6 +73,20 @@ Un usuario puede crear, leer, actualizar y eliminar sus propios posts cuando est
 }
 ```
 
+**Respuesta:**
+
+```json
+{
+  "user": {
+    "id": "number",
+    "name": "string",
+    "email": "string",
+    "createdAt": "date",
+    "updatedAt": "date"
+  }
+}
+```
+
 ### POST /auth/login
 
 **Headers:**
@@ -96,7 +110,14 @@ Un usuario puede crear, leer, actualizar y eliminar sus propios posts cuando est
 
 ```json
 {
-  "token": "string"
+  "token": "string",
+  "user": {
+    "id": "number",
+    "name": "string",
+    "email": "string",
+    "createdAt": "date",
+    "updatedAt": "date"
+  }
 }
 ```
 
@@ -214,6 +235,8 @@ Un usuario puede crear, leer, actualizar y eliminar sus propios posts cuando est
 ```
 
 **Respuesta:**
+
+> Devuelve el número de filas afectadas. (generalmente 1)
 
 ```json
 {
