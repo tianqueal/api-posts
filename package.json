@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sync-db": "node ./src/sync-db.js"
   },
   "keywords": [],
   "author": "tianqueal",

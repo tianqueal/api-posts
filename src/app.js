@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -8,8 +9,6 @@ import meRouter from './routes/me.js';
 import postRouter from './routes/posts.js';
 import authRouter from './routes/auth.js';
 import { sequelize } from './db/db.config.js';
-import { User } from './users/entities/User.entity.js';
-import { Post } from './posts/entities/Post.entity.js';
 import { authenticateToken } from './middleware/auth.js';
 
 const app = express();
@@ -50,21 +49,6 @@ app.get('/health', async (_, res) => {
   }
 });
 
-try {
-  User.hasMany(Post, {
-    foreignKey: 'userId',
-  });
-
-  Post.belongsTo(User, {
-    foreignKey: 'userId',
-  });
-
-  await sequelize.sync({ force: true });
-  console.log('Connection with DB stablished');
-} catch (error) {
-  console.log('DB not connected', error);
-}
-
 export default app.listen(PORT, IP, () => {
-  console.log(`Server listening on ${IP}:${PORT}`);
+  console.log(`Servidor iniciado en ${IP}:${PORT}`);
 });
