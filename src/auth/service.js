@@ -29,6 +29,7 @@ const login = async ({ email, password, rememberMe }) => {
     throw new Error('Las credenciales son inválidas');
   }
 
+  // eslint-disable-next-line no-unused-vars
   const { password: _, ...userWithoutPassword } = user.dataValues;
 
   const token = jwt.sign({ user: userWithoutPassword }, SECRET_KEY, {

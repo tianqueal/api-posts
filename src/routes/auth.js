@@ -42,6 +42,7 @@ router.post('/register', async (req, res) => {
       password,
     });
 
+    // eslint-disable-next-line no-unused-vars
     const { password: _, ...newUser } = dataValues;
     res.status(201).json(newUser);
   } catch (error) {
